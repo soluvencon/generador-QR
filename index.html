@@ -1,72 +1,216 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generador QR Pro - Versión Completa</title>
+  <title>Generador QR estaticos gratis</title>
   <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     :root {
-      --bg: #0f0f0f; --surface: #1a1a1a; --border: #2a2a2a;
-      --accent: #a3e635; --accent-dim: #6b9a22; --text: #f0f0f0; --muted: #888;
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --accent: #a3e635;
+      --accent-dim: #6b9a22;
+      --text: #f0f0f0;
+      --muted: #888;
     }
+
     body {
-      background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif;
-      min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 2rem 1rem;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
     }
-    header { text-align: center; margin-bottom: 2rem; }
-    header h1 { font-size: 2.2rem; color: var(--accent); }
-    header p { color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem; }
-    .container { display: flex; flex-wrap: wrap; gap: 2rem; max-width: 1000px; width: 100%; justify-content: center; }
-    
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: var(--accent);
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1000px;
+      width: 100%;
+      justify-content: center;
+    }
+
     .controls-panel {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
-      flex: 1; min-width: 340px; display: flex; flex-direction: column; gap: 1rem; max-height: 95vh; overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      flex: 1;
+      min-width: 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-height: 95vh;
+      overflow-y: auto;
     }
-    .controls-panel::-webkit-scrollbar { width: 6px; }
-    .controls-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    
+
+    .controls-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .controls-panel::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
     .section-title {
-      font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em;
-      border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-top: 0.5rem; font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-top: 0.5rem;
+      font-weight: 800;
     }
-    label { font-size: 0.8rem; color: var(--muted); display: block; margin-bottom: 0.3rem; }
-    input[type="text"], select {
-      width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
-      color: var(--text); font-size: 0.9rem; padding: 0.6rem; outline: none; transition: 0.2s;
+
+    label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.3rem;
     }
-    input[type="text"]:focus, select:focus { border-color: var(--accent); }
-    .row { display: flex; gap: 1rem; } .col { flex: 1; }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 0.9rem;
+      padding: 0.6rem;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      border-color: var(--accent);
+    }
+
+    .row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .col {
+      flex: 1;
+    }
+
     input[type="color"] {
-      width: 100%; height: 36px; border: 1px solid var(--border); border-radius: 6px;
-      background: var(--bg); cursor: pointer; padding: 2px;
+      width: 100%;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg);
+      cursor: pointer;
+      padding: 2px;
     }
-    input[type="range"] { width: 100%; accent-color: var(--accent); }
-    input[type="file"] { font-size: 0.8rem; color: var(--muted); }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    input[type="file"] {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
     input[type="file"]::file-selector-button {
-      background: var(--bg); color: var(--accent); border: 1px solid var(--accent-dim);
-      border-radius: 4px; padding: 0.4rem; cursor: pointer; margin-right: 0.5rem;
+      background: var(--bg);
+      color: var(--accent);
+      border: 1px solid var(--accent-dim);
+      border-radius: 4px;
+      padding: 0.4rem;
+      cursor: pointer;
+      margin-right: 0.5rem;
     }
-    
+
     .preview-panel {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem;
-      flex: 1.2; min-width: 360px; display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
-      position: sticky; top: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      flex: 1.2;
+      min-width: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      position: sticky;
+      top: 2rem;
     }
+
     #main-canvas {
       background: repeating-conic-gradient(#e0e0e0 0% 25%, #ffffff 0% 50%) 50% / 20px 20px;
-      border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); max-width: 100%; height: auto;
+      border-radius: 8px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      max-width: 100%;
+      height: auto;
     }
+
     .btn-dl {
-      width: 100%; background: var(--accent); color: #0f0f0f; border: none; border-radius: 8px;
-      font-weight: 800; font-size: 1.1rem; padding: 1rem; cursor: pointer; transition: 0.2s;
+      width: 100%;
+      background: var(--accent);
+      color: #0f0f0f;
+      border: none;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
     }
-    .btn-dl:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(163, 230, 53, 0.3); }
+
+    .btn-dl:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(163, 230, 53, 0.3);
+    }
+
     /* El QR oculto debe existir pero no estorbar */
-    #hidden-qr { position: fixed; left: -9999px; top: -9999px; opacity: 0; pointer-events: none; }
+    #hidden-qr {
+      position: fixed;
+      left: -9999px;
+      top: -9999px;
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -76,7 +220,7 @@
 
   <div class="container">
     <div class="controls-panel">
-      
+
       <div class="section-title">1. Contenido y Texto</div>
       <div>
         <label>URL o Texto del QR</label>
@@ -136,8 +280,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col"><label>Color QR</label><input type="color" id="color-dark" value="#000000" oninput="triggerUpdate()"></div>
-        <div class="col"><label>Fondo QR</label><input type="color" id="color-light" value="#ffffff" oninput="triggerUpdate()"></div>
+        <div class="col"><label>Color QR</label><input type="color" id="color-dark" value="#000000"
+            oninput="triggerUpdate()"></div>
+        <div class="col"><label>Fondo QR</label><input type="color" id="color-light" value="#ffffff"
+            oninput="triggerUpdate()"></div>
       </div>
 
       <div class="section-title">4. Contorno / Envoltura (12 Opciones)</div>
@@ -236,7 +382,7 @@
         cornersDotOptions: { color: document.getElementById('color-dark').value, type: document.getElementById('corner-style').value === 'dot' ? 'dot' : 'square' },
         imageOptions: { imageSize: 0.3 }
       });
-      
+
       // Tiempo de espera para que la librería pinte el QR oculto sin fallar
       setTimeout(drawFinalCanvas, 400);
     }
@@ -250,7 +396,7 @@
 
       const mainCanvas = document.getElementById('main-canvas');
       const ctx = mainCanvas.getContext('2d');
-      
+
       const frameType = document.getElementById('frame-type').value;
       const frameColor = document.getElementById('frame-color').value;
       const text = document.getElementById('qr-text').value;
@@ -266,19 +412,19 @@
       let textSpace = text ? 50 : 0;
       if (textPos === 'out') textSpace = 60;
 
-      switch(frameType) {
-        case 'domidelis': canvasW=320; qrX=40; qrY=100; canvasH = qrY + qrSize + 70 + textSpace; break;
-        case 'single_strip': canvasW=300; qrX=30; qrY=100; canvasH = qrY + qrSize + 70 + textSpace; break;
-        case 'tote': canvasW=320; qrX=40; qrY=90; canvasH = qrY + qrSize + 60 + textSpace; break;
-        case 'kraft': canvasW=320; qrX=40; qrY=110; canvasH = qrY + qrSize + 60 + textSpace; break;
-        case 'ticket': canvasW=340; qrX=50; qrY=40; canvasH = qrSize + 80 + textSpace; break;
-        case 'header': canvasW=340; qrX=50; qrY=100; canvasH = qrSize + 120 + textSpace; break;
-        case 'coupon': canvasW=340; qrX=50; qrY=40; canvasH = qrSize + 80 + textSpace; break;
-        case 'gift_card': canvasW=340; qrX=50; qrY=40; canvasH = qrSize + 80 + textSpace; break;
-        case 'badge': canvasW=320; qrX=40; qrY=30; canvasH = qrSize + 120 + textSpace; break;
-        case 'phone': canvasW=300; qrX=30; qrY=80; canvasH = qrSize + 120 + textSpace; break;
-        case 'pin': canvasW=320; qrX=40; qrY=60; canvasH = qrSize + 150 + textSpace; break;
-        default: canvasW=320; qrX=40; qrY=40; canvasH = qrSize + 80 + textSpace; break; // none
+      switch (frameType) {
+        case 'domidelis': canvasW = 320; qrX = 40; qrY = 100; canvasH = qrY + qrSize + 70 + textSpace; break;
+        case 'single_strip': canvasW = 300; qrX = 30; qrY = 100; canvasH = qrY + qrSize + 70 + textSpace; break;
+        case 'tote': canvasW = 320; qrX = 40; qrY = 90; canvasH = qrY + qrSize + 60 + textSpace; break;
+        case 'kraft': canvasW = 320; qrX = 40; qrY = 110; canvasH = qrY + qrSize + 60 + textSpace; break;
+        case 'ticket': canvasW = 340; qrX = 50; qrY = 40; canvasH = qrSize + 80 + textSpace; break;
+        case 'header': canvasW = 340; qrX = 50; qrY = 100; canvasH = qrSize + 120 + textSpace; break;
+        case 'coupon': canvasW = 340; qrX = 50; qrY = 40; canvasH = qrSize + 80 + textSpace; break;
+        case 'gift_card': canvasW = 340; qrX = 50; qrY = 40; canvasH = qrSize + 80 + textSpace; break;
+        case 'badge': canvasW = 320; qrX = 40; qrY = 30; canvasH = qrSize + 120 + textSpace; break;
+        case 'phone': canvasW = 300; qrX = 30; qrY = 80; canvasH = qrSize + 120 + textSpace; break;
+        case 'pin': canvasW = 320; qrX = 40; qrY = 60; canvasH = qrSize + 150 + textSpace; break;
+        default: canvasW = 320; qrX = 40; qrY = 40; canvasH = qrSize + 80 + textSpace; break; // none
       }
 
       mainCanvas.width = canvasW;
@@ -286,7 +432,7 @@
       ctx.clearRect(0, 0, canvasW, canvasH);
 
       // 1. Dibujar Marco
-      switch(frameType) {
+      switch (frameType) {
         case 'domidelis': drawDomidelis(ctx, canvasW, canvasH, frameColor, text, textPos); break;
         case 'single_strip': drawSingleStrip(ctx, canvasW, canvasH, frameColor, text, textPos); break;
         case 'tote': drawTote(ctx, canvasW, canvasH, frameColor, text, textPos); break;
@@ -320,17 +466,17 @@
     function drawDomidelis(ctx, w, h, color, text, textPos) {
       ctx.fillStyle = color; roundRect(ctx, 20, 70, w - 40, h - 90, 15); ctx.fill();
       ctx.lineWidth = 10; ctx.strokeStyle = color; ctx.lineCap = 'round';
-      ctx.beginPath(); ctx.arc(w/2 - 35, 70, 25, Math.PI, 0, false); ctx.stroke();
-      ctx.beginPath(); ctx.arc(w/2 + 35, 70, 25, Math.PI, 0, false); ctx.stroke();
-      if (text) { ctx.fillStyle = '#fff'; ctx.font = 'bold 28px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; ctx.fillText(text, w/2, h - 30); }
+      ctx.beginPath(); ctx.arc(w / 2 - 35, 70, 25, Math.PI, 0, false); ctx.stroke();
+      ctx.beginPath(); ctx.arc(w / 2 + 35, 70, 25, Math.PI, 0, false); ctx.stroke();
+      if (text) { ctx.fillStyle = '#fff'; ctx.font = 'bold 28px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; ctx.fillText(text, w / 2, h - 30); }
     }
 
     function drawSingleStrip(ctx, w, h, color, text, textPos) {
       ctx.fillStyle = color; roundRect(ctx, 20, 80, w - 40, h - 100, 15); ctx.fill();
-      ctx.fillRect(w/2 - 8, 40, 16, 45);
+      ctx.fillRect(w / 2 - 8, 40, 16, 45);
       ctx.lineWidth = 14; ctx.strokeStyle = color; ctx.lineCap = 'round';
-      ctx.beginPath(); ctx.arc(w/2, 40, 25, Math.PI, 0, false); ctx.stroke();
-      if (text) { ctx.fillStyle = '#fff'; ctx.font = 'bold 28px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; ctx.fillText(text, w/2, h - 30); }
+      ctx.beginPath(); ctx.arc(w / 2, 40, 25, Math.PI, 0, false); ctx.stroke();
+      if (text) { ctx.fillStyle = '#fff'; ctx.font = 'bold 28px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; ctx.fillText(text, w / 2, h - 30); }
     }
 
     function drawTote(ctx, w, h, color, text, textPos) {
@@ -338,7 +484,7 @@
       ctx.lineWidth = 10; ctx.strokeStyle = color; ctx.lineCap = 'round';
       ctx.beginPath(); ctx.moveTo(80, 70); ctx.quadraticCurveTo(80, 20, 120, 20); ctx.lineTo(120, 70); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(w - 80, 70); ctx.quadraticCurveTo(w - 80, 20, w - 120, 20); ctx.lineTo(w - 120, 70); ctx.stroke();
-      if (text) { ctx.fillStyle = '#fff'; ctx.font = 'bold 28px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; ctx.fillText(text, w/2, h - 30); }
+      if (text) { ctx.fillStyle = '#fff'; ctx.font = 'bold 28px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; ctx.fillText(text, w / 2, h - 30); }
     }
 
     function drawKraft(ctx, w, h, color, text, textPos) {
@@ -346,7 +492,7 @@
       ctx.beginPath(); ctx.moveTo(20, 110); ctx.lineTo(70, 80); ctx.lineTo(w - 70, 80); ctx.lineTo(w - 20, 110); ctx.closePath();
       ctx.fillStyle = lightenColor(color, 15); ctx.fill();
       ctx.strokeStyle = lightenColor(color, 30); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(20, 110); ctx.lineTo(w - 20, 110); ctx.stroke();
-      if (text) { ctx.fillStyle = '#fff'; ctx.font = 'bold 28px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; ctx.fillText(text, w/2, h - 30); }
+      if (text) { ctx.fillStyle = '#fff'; ctx.font = 'bold 28px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'; ctx.fillText(text, w / 2, h - 30); }
     }
 
     function drawTicket(ctx, w, h, color, text, textPos) {
@@ -369,7 +515,7 @@
       ctx.beginPath(); ctx.arc(w / 2, h, 20, 0, Math.PI * 2); ctx.fill();
       ctx.globalCompositeOperation = 'source-over';
       ctx.setLineDash([8, 8]); ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.moveTo(w/2, 20); ctx.lineTo(w/2, h - 20); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.moveTo(w / 2, 20); ctx.lineTo(w / 2, h - 20); ctx.stroke(); ctx.setLineDash([]);
     }
 
     function drawGiftCard(ctx, w, h, color, text, textPos) {
@@ -394,7 +540,7 @@
     function drawPhone(ctx, w, h, color, text, textPos) {
       ctx.fillStyle = color; roundRect(ctx, 10, 0, w - 20, h, 30); ctx.fill();
       ctx.fillStyle = "#ffffff"; ctx.fillRect(20, 50, w - 40, h - 70);
-      ctx.fillStyle = color; roundRect(ctx, w/2 - 40, 5, 80, 25, 10); ctx.fill();
+      ctx.fillStyle = color; roundRect(ctx, w / 2 - 40, 5, 80, 25, 10); ctx.fill();
     }
 
     function drawPin(ctx, w, h, color, text, textPos) {
@@ -419,9 +565,9 @@
       ctx.lineTo(x, y + radius); ctx.quadraticCurveTo(x, y, x + radius, y); ctx.closePath();
     }
     function lightenColor(hex, percent) {
-      const num = parseInt(hex.replace("#",""), 16); const amt = Math.round(2.55 * percent);
+      const num = parseInt(hex.replace("#", ""), 16); const amt = Math.round(2.55 * percent);
       const R = (num >> 16) + amt; const G = (num >> 8 & 0x00FF) + amt; const B = (num & 0x0000FF) + amt;
-      return "#" + (0x1000000 + (R<0?0:R>255?255:R) * 0x10000 + (G<0?0:G>255?255:G) * 0x100 + (B<0?0:B>255?255:B)).toString(16).slice(1);
+      return "#" + (0x1000000 + (R < 0 ? 0 : R > 255 ? 255 : R) * 0x10000 + (G < 0 ? 0 : G > 255 ? 255 : G) * 0x100 + (B < 0 ? 0 : B > 255 ? 255 : B)).toString(16).slice(1);
     }
 
     function downloadImage() {
@@ -436,4 +582,5 @@
     generateAndDraw();
   </script>
 </body>
+
 </html>
